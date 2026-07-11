@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{background:#F4EDDD}
+::selection{background:#6E2A2E;color:#FBF7EE}
+@keyframes nyfgFade{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes nyfgModal{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width:900px){
+  .nyfg-grid3, .nyfg-feat-grid{ grid-template-columns:repeat(2,1fr) !important; }
+}
+@media (max-width:640px){
+  .nyfg-container{ padding-left:16px !important; padding-right:16px !important; }
+  .nyfg-grid3col{ grid-template-columns:1fr !important; gap:24px !important; }
+  .nyfg-lead-grid{ grid-template-columns:1fr !important; }
+  .nyfg-feat-grid{ grid-template-columns:repeat(2,1fr) !important; }
+  .nyfg-grid3{ grid-template-columns:1fr !important; }
+  .nyfg-archive-layout{ grid-template-columns:1fr !important; gap:28px !important; }
+  .nyfg-archive-grid{ grid-template-columns:1fr !important; }
+  .nyfg-2col-inner{ grid-template-columns:1fr !important; }
+  .nyfg-archive-header{ grid-template-columns:1fr !important; gap:28px !important; }
+  .nyfg-about-hero{ grid-template-columns:1fr !important; gap:24px !important; }
+  .nyfg-2col{ grid-template-columns:1fr !important; gap:24px !important; }
+  .nyfg-footer-grid{ grid-template-columns:1fr !important; gap:28px !important; }
+  .nyfg-gallery-row{ flex-direction:column !important; padding:24px 0 !important; }
+  .nyfg-gallery-row > div{ padding:0 !important; flex:none !important; width:100% !important; }
+  .nyfg-gallery-row > div:first-child{ margin-bottom:20px !important; }
+  .nyfg-gallery-hero{ height:72vh !important; min-height:460px !important; }
+  .nyfg-nav{ height:auto !important; flex-wrap:wrap !important; padding-top:12px !important; padding-bottom:12px !important; row-gap:10px !important; justify-content:space-between !important; }
+  .nyfg-nav > div:nth-child(1){ width:100%; }
+  .nyfg-nav > div:nth-child(2){ order:2; justify-content:flex-start !important; overflow-x:auto; }
+  .nyfg-nav > div:nth-child(3){ order:3; }
+  .nyfg-nav a[href="mailto:sales@nyfg.nyc"]{ display:none !important; }
+  .nyfg-modal-panel{ padding:26px 20px 20px !important; }
+  .nyfg-modal-panel input{ font-size:16px !important; }
+  .nyfg-intro-col1{ padding-right:0 !important; border-right:none !important; padding-bottom:24px !important; border-bottom:1px solid rgba(34,28,18,0.14) !important; }
+  .nyfg-intro-col2{ padding:24px 0 !important; border-right:none !important; border-bottom:1px solid rgba(34,28,18,0.14) !important; }
+  .nyfg-intro-col3{ padding-left:0 !important; padding-top:24px !important; }
+  .nyfg-archive-layout aside{ position:static !important; }
+  .nyfg-trust-band{ font-size:10.5px !important; gap:10px 18px !important; }
+  .nyfg-logo-word{ font-size:18px !important; }
+  .nyfg-nav img{ width:38px !important; height:38px !important; }
+  .nyfg-nav button[onclick], .nyfg-nav button{ font-size:10px !important; padding:8px 9px !important; }
+  .nyfg-view-toggle{ flex-wrap:wrap !important; row-gap:8px !important; }
+  .nyfg-view-toggle-btns{ width:100%; }
+}
+@media (max-width:420px){
+  .nyfg-feat-grid{ grid-template-columns:1fr !important; }
+  .nyfg-logo-sub{ display:none !important; }
+}
+</style>
+</helmet>
+
+<div data-screen-label="NYFG Site" style="min-height:100vh;background:#F4EDDD;font-family:'Montserrat',sans-serif;color:#221C12;-webkit-font-smoothing:antialiased">
+
+<nav style="position:sticky;top:0;z-index:50;background:rgba(244,237,221,0.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(34,28,18,0.14)">
+  <div class="nyfg-container nyfg-nav" style="max-width:1240px;margin:0 auto;padding:0 32px;height:66px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+    <div onClick="{{ goCatalog }}" style="display:flex;align-items:center;gap:11px;cursor:pointer">
+      <img src="assets/nyfg-logo-gold.webp" alt="New York Flower Group" style="width:46px;height:46px;display:block;object-fit:contain">
+      <div style="display:flex;flex-direction:column;line-height:1">
+        <span class="nyfg-logo-word" style="font-family:'Montserrat',sans-serif;font-size:23px;font-weight:500;letter-spacing:0.005em;color:#221C12;white-space:nowrap">New York Flower Group</span>
+        <span class="nyfg-logo-sub" style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.24em;text-transform:uppercase;color:#9C907A;margin-top:4px">Wholesale &middot; Est. 1985</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:2px">
+      <button onClick="{{ goCatalog }}" style="{{ navCatalog }}">Catalog</button>
+      <button onClick="{{ goCategories }}" style="{{ navCategories }}">Categories</button>
+      <button onClick="{{ goAbout }}" style="{{ navAbout }}">About</button>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px">
+      <a href="mailto:sales@nyfg.nyc" style="font-family:'Montserrat',sans-serif;font-size:11px;color:#6E2A2E;letter-spacing:0.04em;text-decoration:none;border-bottom:1px solid rgba(110,42,46,0.4);padding-bottom:1px"><span>sales</span><span>&#64;</span><span>nyfg</span><span>&#46;</span><span>nyc</span></a>
+      <button onClick="{{ openModal }}" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#FBF7EE;background:#6E2A2E;border:none;padding:11px 20px;border-radius:2px;cursor:pointer;transition:background .2s" style-hover="background:#561F23">Apply for Account</button>
+    </div>
+  </div>
+</nav>
+
+<sc-if value="{{ isCatalog }}" hint-placeholder-val="{{ true }}">
+<div data-screen-label="Catalog" style="animation:nyfgFade .5s ease both">
+
+  <div class="nyfg-container nyfg-view-toggle" style="max-width:1240px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;gap:20px;border-bottom:1px solid rgba(34,28,18,0.08)">
+    <span style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:#9C907A;white-space:nowrap">View</span>
+    <div class="nyfg-view-toggle-btns" style="display:flex;align-items:center;overflow-x:auto">
+      <button onClick="{{ setBroadsheet }}" style="{{ swBroadsheet }}">Broadsheet</button>
+      <button onClick="{{ setGallery }}" style="{{ swGallery }}">Gallery</button>
+      <button onClick="{{ setArchive }}" style="{{ swArchive }}">Archive</button>
+    </div>
+    <span style="margin-left:auto;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.06em;color:#B7AC93;display:none">Three ways to read one catalog</span>
+  </div>
+
+  <!-- ============ VARIATION A: BROADSHEET ============ -->
+  <sc-if value="{{ isBroadsheet }}" hint-placeholder-val="{{ true }}">
+  <div style="animation:nyfgFade .4s ease both">
+    <header class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:30px 32px 0">
+      <div style="display:flex;justify-content:space-between;align-items:center;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#9C907A;padding-bottom:14px;border-bottom:1px solid rgba(34,28,18,0.14)">
+        <span>New York City &middot; Wholesale Flower Market</span>
+        <span>Vol. XL &middot; No. 25,000+</span>
+      </div>
+      <div style="text-align:center;padding:30px 0 22px;border-bottom:3px double rgba(34,28,18,0.3);position:relative;overflow:hidden">
+        <div aria-hidden="true" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(880px,96%);height:330px;background-image:url('assets/flowers/img18.jpg');background-size:cover;background-position:center 40%;opacity:0.4;-webkit-mask-image:radial-gradient(ellipse 58% 66% at 50% 50%,#000 20%,transparent 72%);mask-image:radial-gradient(ellipse 58% 66% at 50% 50%,#000 20%,transparent 72%);pointer-events:none;z-index:0"></div>
+        <div style="position:relative;z-index:1">
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.3em;text-transform:uppercase;color:#6E2A2E;margin-bottom:14px">Cut Fresh Daily &middot; Since 1985</div>
+        <h1 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:clamp(44px,7.2vw,104px);line-height:0.92;letter-spacing:-0.015em;color:#221C12;margin:0">New York Flower <span style="font-style:italic;color:#6E2A2E">Group</span></h1>
+        <div style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#6A6253;margin-top:16px">Roses &middot; Tulips &middot; Peonies &middot; Orchids &middot; Tropicals &middot; Foliage</div>
+        </div>
+      </div>
+    </header>
+    <div class="nyfg-container nyfg-grid3col" style="max-width:1240px;margin:0 auto;padding:34px 32px 8px;display:grid;grid-template-columns:1.15fr 1.15fr 0.95fr;gap:0">
+      <div class="nyfg-intro-col1" style="padding-right:34px;border-right:1px solid rgba(34,28,18,0.14)">
+        <p style="margin:0;font-size:16px;line-height:1.72;color:#3A3326"><span style="float:left;font-family:'Montserrat',sans-serif;font-size:74px;line-height:0.66;font-weight:500;color:#6E2A2E;margin:8px 12px 0 0">S</span>upplying the professional floral trade since 1985, florists, event planners, hotels and licensed buyers nationwide. Our buyers walk the Dutch auction floor weekly, bringing the newest varieties to New York before anyone else.</p>
+      </div>
+      <div class="nyfg-intro-col2" style="padding:0 34px;border-right:1px solid rgba(34,28,18,0.14)">
+        <p style="margin:0;font-size:15px;line-height:1.74;color:#5A5343">Three legacy houses, Dutch Flower Line, G.&nbsp;Page Wholesale, and A Rose By Harvest, unified under one standard of excellence. Fresh cuts arrive daily across all three locations, sourced from local organic farms and growers across the globe.</p>
+        <p style="margin:16px 0 0;font-size:15px;line-height:1.74;color:#5A5343">Browse the public catalog below. Exact pricing and full variety lists unlock for approved wholesale accounts.</p>
+      </div>
+      <div class="nyfg-intro-col3" style="padding-left:30px">
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#9C907A;padding-bottom:12px;margin-bottom:6px;border-bottom:1px solid rgba(34,28,18,0.14)">By the Numbers</div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;padding:9px 0;border-bottom:1px dotted rgba(34,28,18,0.22)"><span style="font-family:'Montserrat',sans-serif;font-size:30px;color:#221C12">25,000+</span><span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9C907A">Product SKUs</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;padding:9px 0;border-bottom:1px dotted rgba(34,28,18,0.22)"><span style="font-family:'Montserrat',sans-serif;font-size:30px;color:#221C12">6,000+</span><span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9C907A">Clients</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;padding:9px 0;border-bottom:1px dotted rgba(34,28,18,0.22)"><span style="font-family:'Montserrat',sans-serif;font-size:30px;color:#221C12">3</span><span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9C907A">NYC Locations</span></div>
+        <div style="display:flex;align-items:baseline;justify-content:space-between;padding:9px 0"><span style="font-family:'Montserrat',sans-serif;font-size:30px;color:#221C12">1985</span><span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9C907A">Established</span></div>
+      </div>
+    </div>
+
+    <!-- filter chips -->
+    <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:20px 32px;display:flex;align-items:center;gap:7px;overflow-x:auto">
+      <span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#9C907A;white-space:nowrap;margin-right:6px">Browse</span>
+      <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="8">
+        <button onClick="{{ chip.on }}" style="{{ chip.style }}">{{ chip.label }}</button>
+      </sc-for>
+    </div>
+
+    <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:8px 32px 0;display:flex;align-items:baseline;justify-content:space-between">
+      <h2 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:30px;color:#221C12;margin:0">Featured Varieties</h2>
+      <span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#9C907A">Public sample &middot; {{ count }} shown</span>
+    </div>
+
+    <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+    <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:20px 32px 0">
+      <!-- lead story -->
+      <div onClick="{{ openModal }}" class="nyfg-lead-grid" style="display:grid;grid-template-columns:1.25fr 1fr;border:1px solid rgba(34,28,18,0.16);background:#FBF7EE;cursor:pointer;margin-bottom:24px">
+        <div style="overflow:hidden;aspect-ratio:7/5;background:#E4D8BD"><div role="img" aria-label="{{ lead.name }}" style="{{ lead.bg }}" style-hover="transform:scale(1.04)"></div></div>
+        <div style="padding:34px 36px;display:flex;flex-direction:column">
+          <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.12em;color:#9C907A">SKU {{ lead.sku }}</span><span style="{{ lead.badge_style }}">{{ lead.badge }}</span></div>
+          <div style="width:30px;height:1px;background:#6E2A2E;margin:18px 0 14px"></div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:42px;line-height:1.02;color:#221C12;margin:0">{{ lead.name }}</h3>
+          <div style="font-family:'Montserrat',sans-serif;font-style:italic;font-size:19px;color:#9C907A;margin-top:4px">{{ lead.latin }}</div>
+          <p style="font-size:14.5px;line-height:1.7;color:#5A5343;margin:16px 0 0">{{ lead.desc }}</p>
+          <div style="margin-top:auto;padding-top:24px;display:flex;align-items:flex-end;justify-content:space-between">
+            <div><div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5F6548">{{ lead.origin }}</div><div style="font-family:'Montserrat',sans-serif;font-size:13px;color:#6E2A2E;margin-top:6px">{{ lead.price }}</div></div>
+            <span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#221C12;border-bottom:1px solid #221C12;padding-bottom:2px">Request pricing &rarr;</span>
+          </div>
+        </div>
+      </div>
+      <!-- grid -->
+      <div class="nyfg-feat-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(34,28,18,0.14);border:1px solid rgba(34,28,18,0.14)">
+        <sc-for list="{{ rest }}" as="v" hint-placeholder-count="0">
+          <div onClick="{{ openModal }}" style="background:#FBF7EE;cursor:pointer;display:flex;flex-direction:column;transition:background .2s" style-hover="background:#ffffff">
+            <div style="aspect-ratio:4/5;overflow:hidden;background:#E4D8BD"><div role="img" aria-label="{{ v.name }}" style="{{ v.bg }}" style-hover="transform:scale(1.05)"></div></div>
+            <div style="padding:15px 16px 18px;display:flex;flex-direction:column;flex:1">
+              <div style="display:flex;align-items:center;justify-content:space-between"><span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.08em;color:#9C907A">{{ v.sku }}</span><span style="{{ v.badge_style }}">{{ v.badge }}</span></div>
+              <h4 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:21px;line-height:1.1;color:#221C12;margin:10px 0 0">{{ v.name }}</h4>
+              <div style="font-family:'Montserrat',sans-serif;font-style:italic;font-size:14px;color:#9C907A;margin-top:1px">{{ v.latin }}</div>
+              <div style="margin-top:auto;padding-top:14px"><div style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#5F6548;margin-bottom:6px">{{ v.origin }}</div><div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-family:'Montserrat',sans-serif;font-size:12px;color:#6E2A2E">{{ v.price }}</span><span style="font-family:'Montserrat',sans-serif;font-size:9px;color:#9C907A">{{ v.unit }}</span></div></div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+    </sc-if>
+    <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+      <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:20px 32px 0">
+        <div style="border:1px solid rgba(34,28,18,0.16);background:#FBF7EE;padding:60px 32px;text-align:center">
+          <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6E2A2E;margin-bottom:14px">Reserved for trade</div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:32px;color:#221C12;margin:0 0 12px">Visible to approved accounts.</h3>
+          <p style="max-width:440px;margin:0 auto 24px;font-size:14.5px;line-height:1.7;color:#5A5343">Exact pricing, full variety lists and live availability for this family unlock once your wholesale account is approved.</p>
+          <button onClick="{{ openModal }}" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#FBF7EE;background:#6E2A2E;border:none;padding:12px 24px;border-radius:2px;cursor:pointer">Apply for access</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:26px 32px 0;text-align:center">
+      <p style="font-family:'Montserrat',sans-serif;font-style:italic;font-size:17px;color:#9C907A;margin:0 0 16px">Exact pricing available to approved wholesale accounts only.</p>
+      <button onClick="{{ openModal }}" style="font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#221C12;background:none;border:1px solid rgba(34,28,18,0.3);padding:13px 30px;border-radius:2px;cursor:pointer;transition:all .2s" style-hover="background:#6E2A2E;color:#FBF7EE;border-color:#6E2A2E">See all 25,000+ varieties &middot; apply for access</button>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- ============ VARIATION B: GALLERY ============ -->
+  <sc-if value="{{ isGallery }}" hint-placeholder-val="{{ false }}">
+  <div style="animation:nyfgFade .4s ease both">
+    <div class="nyfg-gallery-hero" style="position:relative;height:80vh;min-height:560px;overflow:hidden;background:#221C12">
+      <img src="assets/flowers/img28.jpg" alt="NYC Flower District" style="width:100%;height:100%;object-fit:cover;display:block;opacity:0.82">
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,15,8,0.35) 0%,rgba(20,15,8,0) 30%,rgba(20,15,8,0.1) 55%,rgba(20,15,8,0.78) 100%)"></div>
+      <div style="position:absolute;top:28px;right:34px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:rgba(251,247,238,0.8)">Chelsea Flower District &middot; W. 28th St</div>
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:0 0 56px">
+        <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:0 48px">
+          <div style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#E5D8B3;margin-bottom:20px">New York&rsquo;s Premier Wholesale Florist</div>
+          <h1 style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:clamp(40px,5.6vw,82px);line-height:1.0;letter-spacing:-0.01em;color:#FBF7EE;margin:0;max-width:18ch;text-shadow:0 2px 30px rgba(0,0,0,0.3)">Twenty-five thousand varieties, <span style="font-style:italic;color:#E5D8B3">cut fresh daily.</span></h1>
+          <div style="display:flex;align-items:center;gap:24px;margin-top:30px">
+            <button onClick="{{ setArchive }}" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#221C12;background:#FBF7EE;border:none;padding:14px 26px;border-radius:2px;cursor:pointer">Browse the catalog</button>
+            <span style="font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:0.04em;color:rgba(251,247,238,0.7)">Supplying the trade since 1985</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:36px 48px;display:flex;align-items:center;gap:7px;overflow-x:auto;border-bottom:1px solid rgba(34,28,18,0.1)">
+      <span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#9C907A;white-space:nowrap;margin-right:6px">Browse</span>
+      <sc-for list="{{ chips }}" as="chip" hint-placeholder-count="8">
+        <button onClick="{{ chip.on }}" style="{{ chip.style }}">{{ chip.label }}</button>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+    <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:24px 48px 0">
+      <sc-for list="{{ galleryRows }}" as="v" hint-placeholder-count="0">
+        <div class="nyfg-gallery-row" style="display:flex;flex-direction:{{ v.dir }};align-items:center;gap:0;padding:40px 0;border-bottom:1px solid rgba(34,28,18,0.1)">
+          <div onClick="{{ openModal }}" style="flex:1.15;overflow:hidden;aspect-ratio:5/4;background:#E4D8BD;cursor:pointer"><div role="img" aria-label="{{ v.name }}" style="{{ v.bg }}" style-hover="transform:scale(1.05)"></div></div>
+          <div style="flex:0.95;padding:0 56px">
+            <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px"><span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.12em;color:#9C907A">{{ v.sku }}</span><span style="{{ v.badge_style }}">{{ v.badge }}</span></div>
+            <h3 style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1.0;color:#221C12;margin:0">{{ v.name }}</h3>
+            <div style="font-family:'Montserrat',sans-serif;font-style:italic;font-size:21px;color:#9C907A;margin-top:6px">{{ v.latin }}</div>
+            <p style="font-size:15.5px;line-height:1.75;color:#5A5343;margin:20px 0 0;max-width:42ch">{{ v.desc }}</p>
+            <div style="display:flex;align-items:center;gap:28px;margin-top:26px">
+              <div><div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5F6548">{{ v.origin }}</div></div>
+              <div style="width:1px;height:30px;background:rgba(34,28,18,0.16)"></div>
+              <div><div style="font-family:'Montserrat',sans-serif;font-size:14px;color:#6E2A2E">{{ v.price }}</div><div style="font-family:'Montserrat',sans-serif;font-size:9px;color:#9C907A;margin-top:3px">{{ v.unit }}</div></div>
+              <button onClick="{{ openModal }}" style="margin-left:auto;font-family:'Montserrat',sans-serif;font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#221C12;background:none;border:1px solid rgba(34,28,18,0.3);padding:11px 22px;border-radius:2px;cursor:pointer;transition:all .2s" style-hover="background:#221C12;color:#FBF7EE">Enquire</button>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    </sc-if>
+    <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+      <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:60px 48px;text-align:center">
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6E2A2E;margin-bottom:14px">Reserved for trade</div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:38px;color:#221C12;margin:0 0 14px">Visible to approved accounts.</h3>
+        <p style="max-width:460px;margin:0 auto 26px;font-size:15px;line-height:1.7;color:#5A5343">Pricing, full variety lists and availability for this family unlock once your wholesale account is approved.</p>
+        <button onClick="{{ openModal }}" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#FBF7EE;background:#6E2A2E;border:none;padding:13px 26px;border-radius:2px;cursor:pointer">Apply for access</button>
+      </div>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <!-- ============ VARIATION C: ARCHIVE ============ -->
+  <sc-if value="{{ isArchive }}" hint-placeholder-val="{{ false }}">
+  <div style="animation:nyfgFade .4s ease both">
+    <div style="background:#ECE2CC;border-bottom:1px solid rgba(34,28,18,0.14)">
+      <div class="nyfg-container nyfg-archive-header" style="max-width:1240px;margin:0 auto;padding:48px 32px;display:grid;grid-template-columns:1.4fr 0.9fr;gap:48px;align-items:center">
+        <div>
+          <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#6E2A2E;margin-bottom:18px">Botanical Index &middot; Est. 1985</div>
+          <h1 style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:clamp(46px,6vw,84px);line-height:0.95;letter-spacing:-0.015em;color:#221C12;margin:0">The Variety <span style="font-style:italic;color:#6E2A2E">Archive</span></h1>
+          <p style="font-size:15.5px;line-height:1.72;color:#5A5343;max-width:50ch;margin:22px 0 0">Twenty-five thousand SKUs across twelve product families, catalogued and conditioned for the professional trade. Select a family from the index to view its public specimens.</p>
+          <div style="display:flex;gap:36px;margin-top:28px">
+            <div><div style="font-family:'Montserrat',sans-serif;font-size:34px;color:#221C12">12</div><div style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9C907A;margin-top:2px">Families</div></div>
+            <div><div style="font-family:'Montserrat',sans-serif;font-size:34px;color:#221C12">25K+</div><div style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9C907A;margin-top:2px">Specimens</div></div>
+            <div><div style="font-family:'Montserrat',sans-serif;font-size:34px;color:#221C12">3</div><div style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9C907A;margin-top:2px">Locations</div></div>
+          </div>
+        </div>
+        <div style="border:1px solid rgba(34,28,18,0.22);background:#FBF7EE;padding:14px">
+          <img src="assets/flowers/img14.jpg" alt="Pressed botanical plate" style="width:100%;aspect-ratio:4/5;object-fit:cover;display:block;filter:sepia(0.12)">
+          <div style="display:flex;justify-content:space-between;font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#9C907A;margin-top:10px"><span>Plate I</span><span>Pressed Botanical</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nyfg-container nyfg-archive-layout" style="max-width:1240px;margin:0 auto;padding:40px 32px;display:grid;grid-template-columns:248px 1fr;gap:44px;align-items:start">
+      <aside style="position:sticky;top:90px">
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#9C907A;padding-bottom:10px;border-bottom:1px solid rgba(34,28,18,0.2);margin-bottom:4px">Index of Families</div>
+        <sc-for list="{{ indexItems }}" as="ix" hint-placeholder-count="12">
+          <button onClick="{{ ix.on }}" style="{{ ix.style }}"><span style="font-family:'Montserrat',sans-serif;font-size:18px">{{ ix.name }}</span><span style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.06em;color:#9C907A">{{ ix.count }}</span></button>
+        </sc-for>
+      </aside>
+      <div>
+        <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+        <div class="nyfg-archive-grid" style="display:grid;grid-template-columns:repeat(2,1fr);gap:24px">
+          <sc-for list="{{ archiveItems }}" as="v" hint-placeholder-count="0">
+            <div onClick="{{ openModal }}" style="border:1px solid rgba(34,28,18,0.2);background:#FBF7EE;cursor:pointer;transition:box-shadow .25s" style-hover="box-shadow:0 14px 40px rgba(34,28,18,0.14)">
+              <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 16px;border-bottom:1px solid rgba(34,28,18,0.16)"><span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.1em;color:#221C12">No. {{ v.sku }}</span><span style="{{ v.badge_style }}">{{ v.badge }}</span></div>
+              <div class="nyfg-2col-inner" style="display:grid;grid-template-columns:1fr 1fr">
+                <div style="overflow:hidden;aspect-ratio:1/1;background:#E4D8BD;border-right:1px solid rgba(34,28,18,0.12)"><div role="img" aria-label="{{ v.name }}" style="{{ v.bg }}"></div></div>
+                <div style="padding:18px 18px;display:flex;flex-direction:column">
+                  <div style="font-family:'Montserrat',sans-serif;font-style:italic;font-size:20px;line-height:1.05;color:#6E2A2E">{{ v.latin }}</div>
+                  <h4 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:23px;line-height:1.05;color:#221C12;margin:6px 0 0">{{ v.name }}</h4>
+                  <div style="font-family:'Montserrat',sans-serif;font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:#5F6548;margin-top:8px">{{ v.origin }}</div>
+                  <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(34,28,18,0.1)"><div style="font-family:'Montserrat',sans-serif;font-size:12px;color:#6E2A2E">{{ v.price }}</div><div style="font-family:'Montserrat',sans-serif;font-size:9px;color:#9C907A;margin-top:3px">{{ v.unit }}</div></div>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        </sc-if>
+        <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+          <div style="border:1px solid rgba(34,28,18,0.2);background:#FBF7EE;padding:56px 32px;text-align:center">
+            <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6E2A2E;margin-bottom:14px">Reserved for trade</div>
+            <h3 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:30px;color:#221C12;margin:0 0 12px">Specimens visible to approved accounts.</h3>
+            <p style="max-width:420px;margin:0 auto 24px;font-size:14.5px;line-height:1.7;color:#5A5343">This family&rsquo;s full variety list and pricing unlock once your wholesale account is approved.</p>
+            <button onClick="{{ openModal }}" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#FBF7EE;background:#6E2A2E;border:none;padding:12px 24px;border-radius:2px;cursor:pointer">Apply for access</button>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+  </div>
+  </sc-if>
+
+  <!-- shared trust band -->
+  <div style="background:#221C12;margin-top:48px">
+    <div class="nyfg-container nyfg-trust-band" style="max-width:1240px;margin:0 auto;padding:26px 32px;display:flex;flex-wrap:wrap;align-items:center;gap:14px 30px;font-family:'Montserrat',sans-serif;font-size:11px;letter-spacing:0.04em;color:rgba(251,247,238,0.78)">
+      <span style="color:#E5D8B3">&#10045;</span><span>Trade accounts only &middot; resale license required</span>
+      <span style="color:#E5D8B3">&#10045;</span><span>Direct Dutch auction imports weekly</span>
+      <span style="color:#E5D8B3">&#10045;</span><span>Same-day availability on 1,000+ SKUs</span>
+      <span style="color:#E5D8B3">&#10045;</span><span>NYC delivery &amp; national shipping</span>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ============ CATEGORIES ============ -->
+<sc-if value="{{ isCategories }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="Categories" style="animation:nyfgFade .5s ease both">
+  <header style="border-bottom:1px solid rgba(34,28,18,0.12)">
+    <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:56px 32px 44px">
+      <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#6E2A2E;margin-bottom:18px">Product Taxonomy</div>
+      <h1 style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:clamp(44px,5.5vw,76px);line-height:1.0;letter-spacing:-0.01em;color:#221C12;margin:0">Browse by <span style="font-style:italic;color:#6E2A2E">Category</span></h1>
+      <p style="font-size:15.5px;line-height:1.7;color:#5A5343;max-width:54ch;margin:20px 0 0">25,000+ SKUs organised across twelve product families. Exact pricing, variety lists and availability are visible to approved wholesale accounts.</p>
+    </div>
+  </header>
+
+  <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:36px 32px 8px"><div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#9C907A;padding-bottom:14px;border-bottom:1px solid rgba(34,28,18,0.14)">Fresh Cut Flowers</div></div>
+  <div class="nyfg-container nyfg-grid3" style="max-width:1240px;margin:0 auto;padding:18px 32px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+    <sc-for list="{{ categoriesFresh }}" as="c" hint-placeholder-count="0">
+      <div onClick="{{ openModal }}" style="border:1px solid rgba(34,28,18,0.16);background:#FBF7EE;cursor:pointer;overflow:hidden;transition:box-shadow .25s,transform .25s" style-hover="box-shadow:0 18px 44px rgba(34,28,18,0.16);transform:translateY(-2px)">
+        <div style="overflow:hidden;aspect-ratio:3/2;background:#E4D8BD"><div role="img" aria-label="{{ c.name }}" style="{{ c.bg }}" style-hover="transform:scale(1.05)"></div></div>
+        <div style="padding:20px 22px 24px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-family:'Montserrat',sans-serif;font-size:11px;color:#9C907A">{{ c.num }}</span><span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6E2A2E">{{ c.count }}</span></div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:27px;line-height:1.05;color:#221C12;margin:10px 0 0">{{ c.name }}</h3>
+          <div style="font-family:'Montserrat',sans-serif;font-style:italic;font-size:16px;color:#9C907A;margin-top:1px">{{ c.latin }}</div>
+          <p style="font-size:13px;line-height:1.6;color:#6A6253;margin:12px 0 0">{{ c.desc }}</p>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+
+  <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:30px 32px 8px"><div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#9C907A;padding-bottom:14px;border-bottom:1px solid rgba(34,28,18,0.14)">Specialty &amp; Imports</div></div>
+  <div class="nyfg-container nyfg-grid3" style="max-width:1240px;margin:0 auto;padding:18px 32px 48px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px">
+    <sc-for list="{{ categoriesSpecialty }}" as="c" hint-placeholder-count="0">
+      <div onClick="{{ openModal }}" style="border:1px solid rgba(34,28,18,0.16);background:#FBF7EE;cursor:pointer;overflow:hidden;transition:box-shadow .25s,transform .25s" style-hover="box-shadow:0 18px 44px rgba(34,28,18,0.16);transform:translateY(-2px)">
+        <div style="overflow:hidden;aspect-ratio:3/2;background:#E4D8BD"><div role="img" aria-label="{{ c.name }}" style="{{ c.bg }}" style-hover="transform:scale(1.05)"></div></div>
+        <div style="padding:20px 22px 24px">
+          <div style="display:flex;align-items:baseline;justify-content:space-between"><span style="font-family:'Montserrat',sans-serif;font-size:11px;color:#9C907A">{{ c.num }}</span><span style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:#6E2A2E">{{ c.count }}</span></div>
+          <h3 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:27px;line-height:1.05;color:#221C12;margin:10px 0 0">{{ c.name }}</h3>
+          <div style="font-family:'Montserrat',sans-serif;font-style:italic;font-size:16px;color:#9C907A;margin-top:1px">{{ c.latin }}</div>
+          <p style="font-size:13px;line-height:1.6;color:#6A6253;margin:12px 0 0">{{ c.desc }}</p>
+        </div>
+      </div>
+    </sc-for>
+  </div>
+</div>
+</sc-if>
+
+<!-- ============ ABOUT ============ -->
+<sc-if value="{{ isAbout }}" hint-placeholder-val="{{ false }}">
+<div data-screen-label="About" style="animation:nyfgFade .5s ease both">
+  <header class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:56px 32px 0">
+    <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.24em;text-transform:uppercase;color:#6E2A2E;margin-bottom:20px">Our Story</div>
+    <h1 style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:clamp(42px,5.4vw,78px);line-height:0.98;letter-spacing:-0.015em;color:#221C12;margin:0 0 30px">Cultivating the spirit of <span style="font-style:italic;color:#6E2A2E">growth and change.</span></h1>
+  </header>
+  <div style="overflow:hidden;background:#221C12"><img src="assets/flowers/img27.jpg" alt="NYFG warehouse" style="width:100%;aspect-ratio:16/6;object-fit:cover;display:block;opacity:0.95"></div>
+  <div class="nyfg-container nyfg-about-hero" style="max-width:1240px;margin:0 auto;padding:40px 32px;display:grid;grid-template-columns:1fr 1.3fr;gap:48px;border-bottom:1px solid rgba(34,28,18,0.12)">
+    <div style="font-family:'Montserrat',sans-serif;font-style:italic;font-size:24px;line-height:1.3;color:#6E2A2E">The New York Flower Group unifies three legacy houses into one standard of excellence.</div>
+    <p style="font-size:16px;line-height:1.8;color:#3A3326;margin:0">The New York Flower Group brings together Dutch Flower Line, G.&nbsp;Page Wholesale Flowers, and A Rose By Harvest to provide the new standard of excellence in flowers. Located in the heart of the New York City Wholesale Flower Market, with our new 30,000&nbsp;sq&nbsp;ft Long Island City facility, we supply the professional trade across the city and nationwide.</p>
+  </div>
+
+  <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:44px 32px;border-bottom:1px solid rgba(34,28,18,0.12)">
+    <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6E2A2E;margin-bottom:12px">Our Heritage</div>
+    <h2 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:38px;color:#221C12;margin:0 0 28px">Three legacy brands. One standard.</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(34,28,18,0.14);border:1px solid rgba(34,28,18,0.14)">
+      <div style="background:#FBF7EE;padding:26px 24px"><div style="color:#6E2A2E;font-size:15px;margin-bottom:12px">&#10045;</div><h3 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:22px;color:#221C12;margin:0 0 8px">Dutch Flower Line</h3><p style="font-size:13px;line-height:1.65;color:#6A6253;margin:0">Amsterdam-rooted expertise in Dutch auction imports and European variety sourcing.</p></div>
+      <div style="background:#FBF7EE;padding:26px 24px"><div style="color:#6E2A2E;font-size:15px;margin-bottom:12px">&#10045;</div><h3 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:22px;color:#221C12;margin:0 0 8px">G. Page Wholesale</h3><p style="font-size:13px;line-height:1.65;color:#6A6253;margin:0">Decades of service to NYC&rsquo;s professional floral trade. Deep local market knowledge.</p></div>
+      <div style="background:#FBF7EE;padding:26px 24px"><div style="color:#6E2A2E;font-size:15px;margin-bottom:12px">&#10045;</div><h3 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:22px;color:#221C12;margin:0 0 8px">A Rose By Harvest</h3><p style="font-size:13px;line-height:1.65;color:#6A6253;margin:0">Farm-direct relationships with growers in Ecuador, Colombia and domestic farms.</p></div>
+    </div>
+  </div>
+
+  <div class="nyfg-container nyfg-2col" style="max-width:1240px;margin:0 auto;padding:44px 32px;display:grid;grid-template-columns:1fr 1fr;gap:48px;border-bottom:1px solid rgba(34,28,18,0.12)">
+    <div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6E2A2E;margin-bottom:12px">Our Supply Chain</div>
+      <h2 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:34px;line-height:1.05;color:#221C12;margin:0 0 16px">From farm to your studio, daily.</h2>
+      <p style="font-size:15px;line-height:1.75;color:#5A5343;margin:0">Fresh cut flowers arrive daily across all three locations. We source from local organic farms in our own backyard, and from international suppliers across the globe. Our buyers are on the Dutch auction floor weekly, bringing the newest varieties to the New York market before anyone else.</p>
+    </div>
+    <div style="border:1px solid rgba(34,28,18,0.16);overflow:hidden"><img src="assets/flowers/img11.jpg" alt="Market crates" style="width:100%;height:100%;min-height:240px;object-fit:cover;display:block"></div>
+  </div>
+
+  <div style="background:#221C12">
+    <div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:56px 32px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap">
+      <div style="max-width:46ch">
+        <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#E5D8B3;margin-bottom:14px">Wholesale Access</div>
+        <h2 style="font-family:'Montserrat',sans-serif;font-weight:400;font-size:44px;line-height:1.0;color:#FBF7EE;margin:0 0 14px">Trade accounts only.</h2>
+        <p style="font-size:14.5px;line-height:1.7;color:rgba(251,247,238,0.72);margin:0">NYFG serves florists, event planners, hotels, restaurants and licensed buyers nationwide. A resale or business license is required to open a wholesale account.</p>
+      </div>
+      <button onClick="{{ openModal }}" style="font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#221C12;background:#E5D8B3;border:none;padding:16px 30px;border-radius:2px;cursor:pointer;white-space:nowrap;transition:background .2s" style-hover="background:#FBF7EE">Apply for a Wholesale Account</button>
+    </div>
+  </div>
+</div>
+</sc-if>
+
+<!-- ============ FOOTER ============ -->
+<footer style="background:#1A150D;color:rgba(251,247,238,0.7)">
+  <div class="nyfg-container nyfg-footer-grid" style="max-width:1240px;margin:0 auto;padding:52px 32px 30px;display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px">
+    <div>
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px"><img src="assets/nyfg-logo-gold.webp" alt="New York Flower Group" style="width:52px;height:52px;display:block;object-fit:contain"><span style="font-family:'Montserrat',sans-serif;font-size:22px;color:#FBF7EE">New York Flower Group</span></div>
+      <p style="font-size:13px;line-height:1.7;color:rgba(251,247,238,0.55);margin:0;max-width:34ch">Wholesale cut flowers for the professional trade since 1985. The New York City Wholesale Flower Market.</p>
+    </div>
+    <div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#E5D8B3;margin-bottom:14px">Catalog</div>
+      <div style="display:flex;flex-direction:column;gap:9px;font-size:13px">
+        <span onClick="{{ goCatalog }}" style="cursor:pointer;color:rgba(251,247,238,0.7)" style-hover="color:#FBF7EE">Featured Varieties</span>
+        <span onClick="{{ goCategories }}" style="cursor:pointer;color:rgba(251,247,238,0.7)" style-hover="color:#FBF7EE">All Categories</span>
+        <span onClick="{{ goAbout }}" style="cursor:pointer;color:rgba(251,247,238,0.7)" style-hover="color:#FBF7EE">About NYFG</span>
+        <span onClick="{{ openModal }}" style="cursor:pointer;color:rgba(251,247,238,0.7)" style-hover="color:#FBF7EE">Apply for Account</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#E5D8B3;margin-bottom:14px">Locations</div>
+      <div style="display:flex;flex-direction:column;gap:14px;font-size:12.5px;line-height:1.5;color:rgba(251,247,238,0.6)">
+        <div><div style="color:rgba(251,247,238,0.78)">150 &amp; 120 West 28th Street, New York, NY 10001</div><div style="color:rgba(251,247,238,0.42);margin-top:3px">Mon&ndash;Fri 5am&ndash;Noon &middot; Sat 5am&ndash;10am</div></div>
+        <div><div style="color:rgba(251,247,238,0.78)">21-43 44th Rd &middot; Long Island City</div><div style="color:rgba(251,247,238,0.42);margin-top:3px">Hours pending confirmation</div></div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.14em;text-transform:uppercase;color:#E5D8B3;margin-bottom:14px">Contact</div>
+      <div style="display:flex;flex-direction:column;gap:9px;font-family:'Montserrat',sans-serif;font-size:12px;color:rgba(251,247,238,0.6)">
+        <a href="mailto:sales@nyfg.nyc" style="color:#E5D8B3;text-decoration:none;border-bottom:1px solid rgba(229,216,179,0.35);padding-bottom:1px;width:fit-content"><span>sales</span><span>&#64;</span><span>nyfg</span><span>&#46;</span><span>nyc</span></a>
+        <span>By appointment for trade</span>
+      </div>
+    </div>
+  </div>
+  <div style="border-top:1px solid rgba(251,247,238,0.12)"><div class="nyfg-container" style="max-width:1240px;margin:0 auto;padding:18px 32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.06em;color:rgba(251,247,238,0.4)"><span>&copy; 1985&ndash;2026 New York Flower Group</span><span>Trade accounts only &middot; Resale license required</span></div></div>
+</footer>
+
+<!-- ============ MODAL ============ -->
+<sc-if value="{{ modalOpen }}" hint-placeholder-val="{{ false }}">
+<div onClick="{{ closeModal }}" style="position:fixed;inset:0;z-index:200;background:rgba(20,15,8,0.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px">
+  <div class="nyfg-modal-panel" style="background:#FBF7EE;border-top:3px solid #6E2A2E;width:100%;max-width:480px;padding:40px 40px 34px;position:relative;box-shadow:0 30px 80px rgba(0,0,0,0.4);animation:nyfgModal .35s cubic-bezier(0.22,1,0.36,1) both">
+    <button onClick="{{ closeModal }}" style="position:absolute;top:16px;right:20px;background:none;border:none;font-size:24px;line-height:1;color:#9C907A;cursor:pointer;font-family:'Montserrat'">&times;</button>
+    <div style="font-family:'Montserrat',sans-serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#6E2A2E;margin-bottom:14px">Wholesale Account Application</div>
+    <h2 style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:34px;line-height:1.05;color:#221C12;margin:0 0 12px">Unlock full catalog access.</h2>
+    <p style="font-size:14px;line-height:1.65;color:#6A6253;margin:0 0 24px">Pricing, availability and ordering are visible to approved trade accounts. A business or resale license is required.</p>
+    <input id="wf-bizname" type="text" placeholder="Business name" style="width:100%;background:#F0E8D6;border:1px solid rgba(34,28,18,0.16);color:#221C12;font-family:'Montserrat';font-size:14px;padding:12px 14px;margin-bottom:10px;outline:none;border-radius:2px">
+    <input id="wf-bizemail" type="email" placeholder="Business email" style="width:100%;background:#F0E8D6;border:1px solid rgba(34,28,18,0.16);color:#221C12;font-family:'Montserrat';font-size:14px;padding:12px 14px;margin-bottom:10px;outline:none;border-radius:2px">
+    <input id="wf-phone" type="text" placeholder="Phone number" style="width:100%;background:#F0E8D6;border:1px solid rgba(34,28,18,0.16);color:#221C12;font-family:'Montserrat';font-size:14px;padding:12px 14px;margin-bottom:16px;outline:none;border-radius:2px">
+    <button id="wf-submit-btn" onClick="{{ submitApplication }}" style="width:100%;background:#6E2A2E;border:none;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:#FBF7EE;padding:14px;cursor:pointer;border-radius:2px;transition:background .2s" style-hover="background:#561F23">Submit Application</button>
+    <p style="font-family:'Montserrat',sans-serif;font-size:10px;line-height:1.6;color:#9C907A;text-align:center;margin:16px 0 0">Our sales team will contact you within 1 business day.<br>Prefer email? Write to <a href="mailto:sales@nyfg.nyc" style="color:#6E2A2E;text-decoration:none;border-bottom:1px solid rgba(110,42,46,0.45)"><span>sales</span><span>&#64;</span><span>nyfg</span><span>&#46;</span><span>nyc</span></a></p>
+  </div>
+</div>
+</sc-if>
+
+</div>
+</x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#F4EDDD">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F4EDDD"/>
+    <g transform="translate(600,400)" fill="none" stroke="#C2AE73" stroke-width="9">
+      <circle r="232"/>
+      <circle r="196"/>
+      <circle r="120"/>
+      <g stroke-width="11" stroke-linejoin="round" stroke-linecap="round">
+        <path d="M0,72 C-66,30 -78,-44 -36,-92 C-6,-58 -2,-12 0,40 C2,-12 6,-58 36,-92 C78,-44 66,30 0,72 Z"/>
+        <path d="M0,72 C-30,30 -34,-30 0,-66 C34,-30 30,30 0,72 Z"/>
+      </g>
+    </g>
+  </svg>
+</template>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { screen:'catalog', layout:'broadsheet', filter:'all', modalOpen:true };
+
+  FEATURED = [
+    {name:'Red Naomi Rose', latin:"Rosa 'Red Naomi'", origin:'Netherlands', sku:'RN-0420', unit:'25 stems / bunch', price:'$$ / bunch', badge:'In Stock', badgeType:'a', cat:'roses', img:'img0.jpg', desc:'The market benchmark, long velvet heads and exceptional vase life, cut in Holland and on our floor within 48 hours.'},
+    {name:'Cymbidium Orchid', latin:'Cymbidium hybr.', origin:'Colombia', sku:'CY-1130', unit:'10 stems / box', price:'$$$ / box', badge:'Import', badgeType:'i', cat:'orchids', img:'img1.jpg', desc:'Architectural sprays of waxy blooms. A staple for hotel and event work, boxed and flown direct from Colombia.'},
+    {name:'Blue Hydrangea', latin:'Hydrangea macrophylla', origin:'Holland', sku:'HY-0815', unit:'10 stems / box', price:'$$ / box', badge:'In Stock', badgeType:'a', cat:'hydrangeas', img:'img2.jpg', desc:'Full antique heads in true Dutch blue, conditioned for volume work and large-scale installation.'},
+    {name:'Coral Charm Peony', latin:'Paeonia lactiflora', origin:'Alaska', sku:'PA-0560', unit:'10 stems / bunch', price:'$$$ / bunch', badge:'Seasonal', badgeType:'s', cat:'peonies', img:'img7.jpg', desc:'Coral-to-blush as it opens, the event florist\u2019s peony, cut at soft-bud from Alaskan summer fields.'},
+    {name:'French Tulip', latin:'Tulipa gesneriana', origin:'Netherlands', sku:'TU-0233', unit:'50 stems / bunch', price:'$ / bunch', badge:'In Stock', badgeType:'a', cat:'tulips', img:'img5.png', desc:'French tulips on long, gestural stems that keep moving in the vase. Holland-grown, fall through spring.'},
+    {name:'Casa Blanca Lily', latin:"Lilium 'Casa Blanca'", origin:'Ecuador', sku:'LI-0710', unit:'10 stems / bunch', price:'$$ / bunch', badge:'In Stock', badgeType:'a', cat:'lilies', img:'img8.jpg', desc:'Pure white, heavily fragrant Oriental lily. A bridal- and ceremony-trade standard, year-round from Ecuador.'},
+    {name:'Sunflower', latin:'Helianthus annuus', origin:'Domestic', sku:'SU-0190', unit:'25 stems / bunch', price:'$ / bunch', badge:'In Stock', badgeType:'a', cat:'sunflowers', img:'img6.png', desc:'Bold domestic Helianthus with strong faces and clean foliage, cut at peak through the summer season.'},
+    {name:'Vanda Orchid', latin:'Vanda coerulea', origin:'Thailand', sku:'VA-1450', unit:'10 stems / box', price:'$$$ / box', badge:'Import', badgeType:'i', cat:'orchids', img:'img9.jpg', desc:'Saturated tropical color on a leafless stem, imported from Thailand for statement and luxury design.'},
+    {name:'Blue Spruce', latin:'Picea pungens', origin:'Domestic', sku:'FO-0305', unit:'per bunch', price:'$ / bunch', badge:'In Stock', badgeType:'a', cat:'foliage', img:'img13.jpg', desc:'Silver-blue structural greenery, winter weight and texture for wreath, garland and installation work.'}
+  ];
+
+  CATEGORIES = [
+    {num:'01', key:'roses', name:'Roses', latin:'Rosa', count:'200+ varieties', desc:'Ecuador, Colombia & Netherlands. Year-round availability.', img:'img15.jpg', group:'fresh'},
+    {num:'02', key:'tulips', name:'Tulips', latin:'Tulipa', count:'80+ varieties', desc:'Dutch-grown single, double & parrot. Fall through spring.', img:'img16.jpg', group:'fresh'},
+    {num:'03', key:'lilies', name:'Lilies', latin:'Lilium', count:'60+ varieties', desc:'Asiatic, Oriental & Casa Blanca. Available year-round.', img:'img8.jpg', group:'fresh'},
+    {num:'04', key:'peonies', name:'Peonies', latin:'Paeonia', count:'30+ varieties', desc:'Peak season May\u2013July. High demand for events.', img:'img18.jpg', group:'fresh'},
+    {num:'05', key:'hydrangeas', name:'Hydrangeas', latin:'Hydrangea', count:'25+ varieties', desc:'Full color range. Dutch imports & domestic.', img:'img19.png', group:'fresh'},
+    {num:'06', key:'sunflowers', name:'Sunflowers', latin:'Helianthus', count:'15+ varieties', desc:'Standard, teddy bear & specialty. Peak season.', img:'img20.jpg', group:'fresh'},
+    {num:'07', key:'orchids', name:'Orchids', latin:'Orchidaceae', count:'100+ varieties', desc:'Cymbidium, Dendrobium & Vanda. Colombia & Thailand.', img:'img21.jpg', group:'specialty'},
+    {num:'08', key:'tropical', name:'Tropical', latin:'Heliconia', count:'150+ varieties', desc:'Heliconias, anthuriums & birds of paradise.', img:'img22.jpg', group:'specialty'},
+    {num:'09', key:'foliage', name:'Foliage', latin:'Eucalyptus', count:'120+ varieties', desc:'Eucalyptus, ruscus, ferns & specialty greens.', img:'img23.jpg', group:'specialty'},
+    {num:'10', key:'dried', name:'Dried & Preserved', latin:'Conservata', count:'Seasonal', desc:'Pampas, dried botanicals & preserved specimens.', img:'img14.jpg', group:'specialty'},
+    {num:'11', key:'dutch', name:'Dutch Imports', latin:'Ex Holland', count:'500+ varieties', desc:'Weekly direct Dutch auction arrivals.', img:'img25.jpg', group:'specialty'},
+    {num:'12', key:'specialty', name:'Specialty Cuts', latin:'Selecta', count:'200+ varieties', desc:'Ranunculus, anemones, protea & rare seasonals.', img:'img26.jpg', group:'specialty'}
+  ];
+
+  CHIPS = [
+    {key:'all',label:'All'},{key:'roses',label:'Roses'},{key:'tulips',label:'Tulips'},
+    {key:'peonies',label:'Peonies'},{key:'hydrangeas',label:'Hydrangeas'},{key:'lilies',label:'Lilies'},
+    {key:'sunflowers',label:'Sunflowers'},{key:'orchids',label:'Orchids'},{key:'foliage',label:'Foliage'},
+    {key:'tropical',label:'Tropical'},{key:'specialty',label:'Specialty'},{key:'dutch',label:'Dutch Imports'},{key:'dried',label:'Dried'}
+  ];
+
+  go(s){ this.setState({screen:s, modalOpen:false}); try{ window.scrollTo(0,0); }catch(e){} }
+  setLayout(l){ this.setState({layout:l}); }
+  setFilter(k){ this.setState({filter:k}); }
+  openModal(){ this.setState({modalOpen:true}); }
+  closeModal(e){
+    if(e && e.target !== e.currentTarget){ return; }
+    this.setState({modalOpen:false});
+  }
+  submitApplication(){
+    const nameEl = document.getElementById('wf-bizname');
+    const emailEl = document.getElementById('wf-bizemail');
+    const phoneEl = document.getElementById('wf-phone');
+    const btn = document.getElementById('wf-submit-btn');
+    const name = nameEl ? nameEl.value.trim() : '';
+    const email = emailEl ? emailEl.value.trim() : '';
+    const phone = phoneEl ? phoneEl.value.trim() : '';
+    if(!email){
+      if(btn){ btn.textContent = 'Please enter a business email'; }
+      return;
+    }
+    if(btn){ btn.textContent = 'Sending...'; btn.disabled = true; btn.style.opacity = '0.7'; }
+    fetch('https://services.leadconnectorhq.com/hooks/TsNZI0AIxj7uamES5rqx/webhook-trigger/62411c35-6f5a-4a70-90a4-03e745cef08b', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        business_name: name,
+        full_name: name,
+        email: email,
+        phone: phone,
+        source: 'NYFG Website - Wholesale Account Application',
+        submitted_at: new Date().toISOString()
+      })
+    }).then(()=>{
+      if(btn){ btn.textContent = 'Application received'; }
+      setTimeout(()=>{ this.closeModal(); }, 1500);
+    }).catch(()=>{
+      if(btn){ btn.textContent = 'Something went wrong \u2014 email sales@nyfg.nyc'; btn.disabled = false; btn.style.opacity = '1'; }
+    });
+  }
+
+  navStyle(a){ return {fontFamily:"'Montserrat',sans-serif",fontSize:'11px',fontWeight:'700',letterSpacing:'0.1em',textTransform:'uppercase',padding:'9px 12px',background:'none',border:'none',borderBottom:'1.5px solid '+(a?'#6E2A2E':'transparent'),color:a?'#6E2A2E':'#6A6253',cursor:'pointer'}; }
+  swStyle(a){ return {fontFamily:"'Montserrat',sans-serif",fontSize:'11px',fontWeight:'700',letterSpacing:'0.12em',textTransform:'uppercase',padding:'4px 0',marginRight:'26px',background:'none',border:'none',borderBottom:'1.5px solid '+(a?'#6E2A2E':'transparent'),color:a?'#221C12':'#9C907A',cursor:'pointer'}; }
+  chipStyle(a){ return {fontFamily:"'Montserrat',sans-serif",fontSize:'10px',fontWeight:'700',letterSpacing:'0.1em',textTransform:'uppercase',whiteSpace:'nowrap',padding:'7px 15px',borderRadius:'2px',cursor:'pointer',border:'1px solid '+(a?'#6E2A2E':'rgba(34,28,18,0.18)'),background:a?'#6E2A2E':'transparent',color:a?'#FBF7EE':'#6A6253'}; }
+  indexStyle(a){ return {display:'flex',justifyContent:'space-between',alignItems:'baseline',gap:'10px',width:'100%',background:a?'rgba(110,42,46,0.06)':'none',border:'none',borderBottom:'1px solid rgba(34,28,18,0.1)',padding:'9px 6px',cursor:'pointer',textAlign:'left',color:a?'#6E2A2E':'#221C12'}; }
+  badgeStyle(t){ const c = t==='i' ? '#9C7B33' : t==='s' ? '#6E2A2E' : '#5F6548'; return {fontFamily:"'Montserrat',sans-serif",fontSize:'9px',fontWeight:'700',letterSpacing:'0.12em',textTransform:'uppercase',color:c,border:'1px solid '+c,borderRadius:'2px',padding:'3px 8px',whiteSpace:'nowrap'}; }
+
+  renderVals(){
+    const { screen, layout, filter, modalOpen } = this.state;
+    const all = this.FEATURED;
+    const feat = (filter==='all' ? all : all.filter(f=>f.cat===filter)).map(f=>({ ...f, badge_style:this.badgeStyle(f.badgeType), imgSrc:'assets/flowers/'+f.img, bg:{width:'100%',height:'100%',backgroundImage:"url('assets/flowers/"+f.img+"')",backgroundSize:'cover',backgroundPosition:'center',transition:'transform .6s ease'} }));
+    const chips = this.CHIPS.map(c=>({ key:c.key, label:c.label, style:this.chipStyle(c.key===filter), on:()=>this.setFilter(c.key) }));
+    const galleryRows = feat.slice(0,6).map((f,i)=>({ ...f, dir:(i%2===1)?'row-reverse':'row' }));
+    const cats = this.CATEGORIES.map(c=>({ ...c, imgSrc:'assets/flowers/'+c.img, bg:{width:'100%',height:'100%',backgroundImage:"url('assets/flowers/"+c.img+"')",backgroundSize:'cover',backgroundPosition:'center',transition:'transform .55s ease'} }));
+    return {
+      isCatalog: screen==='catalog', isCategories: screen==='categories', isAbout: screen==='about',
+      isBroadsheet: layout==='broadsheet', isGallery: layout==='gallery', isArchive: layout==='archive',
+      modalOpen, hasResults: feat.length>0, noResults: feat.length===0, count: feat.length,
+      lead: feat[0] || {}, rest: feat.slice(1), feat, galleryRows, archiveItems: feat,
+      categoriesFresh: cats.filter(c=>c.group==='fresh'),
+      categoriesSpecialty: cats.filter(c=>c.group==='specialty'),
+      indexItems: cats.map(c=>({ key:c.key, name:c.name, count:c.count, style:this.indexStyle(c.key===filter), on:()=>this.setFilter(c.key) })),
+      chips,
+      navCatalog: this.navStyle(screen==='catalog'), navCategories: this.navStyle(screen==='categories'), navAbout: this.navStyle(screen==='about'),
+      swBroadsheet: this.swStyle(layout==='broadsheet'), swGallery: this.swStyle(layout==='gallery'), swArchive: this.swStyle(layout==='archive'),
+      goCatalog:()=>this.go('catalog'), goCategories:()=>this.go('categories'), goAbout:()=>this.go('about'),
+      setBroadsheet:()=>this.setLayout('broadsheet'), setGallery:()=>this.setLayout('gallery'), setArchive:()=>this.setLayout('archive'),
+      openModal:()=>this.openModal(), closeModal:(e)=>this.closeModal(e), submitApplication:()=>this.submitApplication()
+    };
+  }
+}
+</script>
+</body>
+</html>
